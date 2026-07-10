@@ -235,6 +235,3 @@ It helps the project grow and motivates future development.
 
 ---
 
-# 📄 License
-
-This project is licensed under the MIT License.
