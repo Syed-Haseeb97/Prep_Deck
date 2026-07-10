@@ -1,84 +1,240 @@
-# Prep Deck (MongoDB + Node version)
+# PrepDeck
 
-Two parts:
-- `server/` — Node/Express API + MongoDB (your real backend)
-- `client/` — React + Vite frontend (talks to the API, never touches MongoDB directly)
+> Organize. Plan. Track. Accomplish.
 
-## 0. Rotate your MongoDB password first
+PrepDeck is a modern full-stack productivity workspace designed to help individuals and teams organize their work, manage projects, track progress, and centralize everything they need in one place.
 
-If any connection string for this database has ever been shared, pasted in a chat,
-committed to a repo, or shown on a screen — treat it as exposed. Before anything else:
-1. MongoDB Atlas → **Database Access**
-2. Find your database user → **Edit Password** → generate a new one
-3. Use the *new* password everywhere below — never an old one
+Rather than focusing on a single use case, PrepDeck is built as a flexible platform that can evolve for students, professionals, creators, developers, startups, and organizations.
 
-## 1. Backend setup
+---
+
+## ✨ Vision
+
+Most productivity tools solve only one problem.
+
+PrepDeck aims to become a unified workspace where users can:
+
+- Manage projects
+- Track tasks
+- Organize resources
+- Build timelines
+- Store important information
+- Collaborate in the future
+- Integrate AI-powered workflows
+
+The goal is to provide one platform for planning, organizing, and execution.
+
+---
+
+# 🚀 Features
+
+Current Features
+
+- Secure user authentication
+- Personal dashboard
+- Timeline management
+- Task organization
+- Resource management
+- Modern responsive interface
+- Clean React frontend
+- Express backend API
+
+Planned Features
+
+- AI Assistant
+- Notes & Knowledge Base
+- Project Workspaces
+- Calendar Integration
+- Goal Tracking
+- Team Collaboration
+- File Uploads
+- Notifications
+- Analytics Dashboard
+- Productivity Insights
+- Mobile Support
+- Cloud Sync
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React
+- Vite
+- JavaScript
+- CSS
+
+## Backend
+
+- Node.js
+- Express.js
+
+## Authentication
+
+- JWT
+- bcrypt
+
+## Database
+
+Currently under development.
+
+The architecture has been designed so different storage providers can easily be integrated, including:
+
+- MongoDB
+- PostgreSQL
+- SQLite
+- Local JSON Storage (development)
+
+---
+
+# 📁 Project Structure
 
 ```
-cd server
-npm install
-cp .env.example .env
+prepdeck/
+│
+├── client/                # React frontend
+│
+├── server/                # Express backend
+│
+├── README.md
+│
+└── future/
 ```
 
-Open `.env` and fill in:
-- `MONGODB_URI` — your connection string, but with your **new** password, and add a database name before the `?`, e.g.:
-  `mongodb+srv://your_username:YOUR_NEW_PASSWORD@your-cluster.mongodb.net/prepdeck?appName=Cluster1`
-- `JWT_SECRET` — generate one by running: `node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"`
-- `PORT` — leave as 4000 unless it conflicts with something
-- `CLIENT_ORIGIN` — leave as `http://localhost:5173` while testing locally
+---
 
-This `.env` file is the **only** place your real credentials ever live. It's already in
-`.gitignore`, so it never gets committed, and it never gets sent to the browser — the
-frontend only ever talks to your own API, never to MongoDB directly.
+# ⚙ Installation
 
-Run it:
+Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/prepdeck.git
 ```
-npm run dev
-```
-You should see `Connected to MongoDB` and `Prep Deck server running on port 4000`.
 
-## 2. Frontend setup
+Go into the project
 
-In a second terminal:
+```bash
+cd prepdeck
 ```
+
+Install frontend
+
+```bash
 cd client
 npm install
+```
+
+Install backend
+
+```bash
+cd ../server
+npm install
+```
+
+Run backend
+
+```bash
 npm run dev
 ```
-Open the URL it prints (usually `http://localhost:5173`). Create an account with any
-email/password — this is a real account stored (hashed, never in plain text) in your
-own MongoDB database.
 
-## 3. How your data is protected
+Run frontend
 
-- Passwords are hashed with bcrypt before they ever touch the database — even you
-  can't see them again, only verify them.
-- Every API request (except login/register) requires a login token. The server checks
-  it on every single request and only ever returns *your* data, never anyone else's.
-- Screenshots are stored in MongoDB itself via GridFS (MongoDB's built-in file storage),
-  capped at 4.5MB per image, and are only ever served back to the account that uploaded them.
+```bash
+cd ../client
+npm run dev
+```
 
-## 4. Deploying for real (so it works from any device, forever)
+---
 
-**Backend** — deploy `server/` to a host that runs Node continuously. Free options:
-Render, Railway, or Fly.io. In all of them, the flow is roughly:
-1. Push this project to a GitHub repo (the `.gitignore` already keeps `.env` out of it)
-2. Connect the repo on your chosen host
-3. Set `MONGODB_URI`, `JWT_SECRET`, `PORT`, and `CLIENT_ORIGIN` as **environment variables**
-   in that host's dashboard — not in code. This is the deployed equivalent of your local `.env`.
-4. Deploy — you'll get a live URL like `https://prep-deck-api.onrender.com`
+# 🎯 Design Philosophy
 
-**Frontend** — deploy `client/` to Vercel or Netlify (both have generous free tiers for this):
-1. Set the environment variable `VITE_API_URL` to your live backend URL from above
-2. Deploy — you'll get a live URL like `https://prep-deck.vercel.app`
+PrepDeck is designed around a few simple principles.
 
-Once both are live, open your frontend URL from any device, log in, and everything
-you saved during local testing will already be there — it's all sitting in your
-MongoDB Atlas database, not in any particular browser.
+- Clean interface
+- Fast workflow
+- Minimal distractions
+- Modular architecture
+- Future scalability
+- Developer-friendly codebase
 
-## Notes on reminders
+Every feature should make users more productive without increasing complexity.
 
-Same as before: reminders fire via the browser's Notification API while the tab is
-open, checked every 20 seconds. True "buzzes my phone even when closed" reminders
-need push notifications plus a scheduled job on the server — happy to build that
-as a next step if you want it.
+---
+
+# 🌱 Roadmap
+
+## Phase 1
+
+- Authentication
+- Dashboard
+- Timeline
+- Task Management
+
+## Phase 2
+
+- Notes
+- Calendar
+- File Storage
+- AI Integration
+
+## Phase 3
+
+- Team Collaboration
+- Real-time Sync
+- Workspaces
+- Mobile Application
+
+## Phase 4
+
+- Marketplace
+- Plugins
+- Enterprise Features
+- API Integrations
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+If you'd like to improve PrepDeck:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+Suggestions, discussions, and feature requests are always appreciated.
+
+---
+
+# 💡 Why PrepDeck?
+
+Most apps focus on one aspect of productivity.
+
+PrepDeck is being built as a flexible platform that brings planning, execution, organization, and knowledge management together in one unified workspace.
+
+Whether you're a student, developer, freelancer, entrepreneur, or professional, PrepDeck is designed to adapt to your workflow—not force you into someone else's.
+
+---
+
+# 📌 Current Status
+
+🚧 Active Development
+
+The project is under active development, with new features and improvements being added regularly.
+
+---
+
+# ⭐ Support
+
+If you like this project, consider giving it a ⭐ on GitHub.
+
+It helps the project grow and motivates future development.
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
