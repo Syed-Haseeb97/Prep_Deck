@@ -232,6 +232,3 @@ The project is under active development, with new features and improvements bein
 If you like this project, consider giving it a ⭐ on GitHub.
 
 It helps the project grow and motivates future development.
-
----
-
