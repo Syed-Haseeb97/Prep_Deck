@@ -9,3 +9,9 @@
 - Waitlist functionality
 - GitHub documentation
 - Roadmap
+
+### Planned
+- Authentication
+- Dashboard
+- Notifications
+- Admin panel
