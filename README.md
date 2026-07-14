@@ -88,21 +88,6 @@ The architecture has been designed so different storage providers can easily be 
 
 ---
 
-# 📁 Project Structure
-
-```
-prepdeck/
-│
-├── client/                # React frontend
-│
-├── server/                # Express backend
-│
-├── README.md
-│
-└── future/
-```
-
----
 
 # ⚙ Installation
 
