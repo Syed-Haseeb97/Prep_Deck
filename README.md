@@ -88,50 +88,6 @@ The architecture has been designed so different storage providers can easily be 
 
 ---
 
-
-# ⚙ Installation
-
-Clone the repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/prepdeck.git
-```
-
-Go into the project
-
-```bash
-cd prepdeck
-```
-
-Install frontend
-
-```bash
-cd client
-npm install
-```
-
-Install backend
-
-```bash
-cd ../server
-npm install
-```
-
-Run backend
-
-```bash
-npm run dev
-```
-
-Run frontend
-
-```bash
-cd ../client
-npm run dev
-```
-
----
-
 # 🎯 Design Philosophy
 
 PrepDeck is designed around a few simple principles.
