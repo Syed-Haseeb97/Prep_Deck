@@ -173,3 +173,8 @@ The project is under active development, with new features and improvements bein
 If you like this project, consider giving it a ⭐ on GitHub.
 
 It helps the project grow and motivates future development.
+
+
+## Quick start
+
+The project contains a React frontend and an Express backend. Install dependencies in the relevant project directories, start the backend before testing API-backed flows, and use environment variables for secrets rather than committing configuration values.
