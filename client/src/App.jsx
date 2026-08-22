@@ -126,6 +126,24 @@ export default function App() {
     }
   }
 
+  async function handleToggleTask(task) {
+    try {
+      await patchTask(task.id, { done: !task.done });
+      await refreshTasks();
+    } catch (err) {
+      showToast("Couldn't update task", err.message);
+    }
+  }
+
+  async function handleDeleteTask(task) {
+    try {
+      await removeTask(task.id);
+      await refreshTasks();
+    } catch (err) {
+      showToast("Couldn't delete task", err.message);
+    }
+  }
+
   if (!email) return <Login onAuthed={setEmail} />;
 
   const counts = {
@@ -147,8 +165,8 @@ export default function App() {
         {space === 'timeline' ? (
           <Timeline
             tasks={tasks}
-            onToggle={t => patchTask(t.id, { done: !t.done }).then(refreshTasks)}
-            onDelete={t => removeTask(t.id).then(refreshTasks)}
+            onToggle={handleToggleTask}
+            onDelete={handleDeleteTask}
             onAdd={() => setModalOpen(true)}
           />
         ) : (
